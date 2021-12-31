@@ -125,6 +125,7 @@
     "aws-embedded-metrics": "2.0.4",
     "compression": "1.7.4",
     "core-js": "3.19.3",
+    "cypress-image-snapshot": "^4.0.1",
     "dotenv": "10.0.0",
     "express": "4.17.1",
     "express-static-gzip": "2.1.1",
