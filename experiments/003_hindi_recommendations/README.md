@@ -1,7 +1,5 @@
 # Hindi Recommendations Experiment
 
-[More information on purpose of experiment](https://paper.dropbox.com/doc/003-Hindi-Recommendations-Experiment-Brief--BgH87qcMcfYfkPhfxG_iRb9UAg-jBmdtlPaaXhX1CwFl3g24)
-
 ## Implementation
 
 ### addExperimentPlaceholderBlocks
