@@ -3,13 +3,6 @@
   "enabledManagers": ["npm"],
   "packageRules": [
     {
-      "packagePatterns": ["*"],
-      "excludePackagePatterns": ["^@bbc", "^@loadable", "webpack"],
-      "updateTypes": ["minor", "patch"],
-      "groupName": "all 3rd party non-major dependencies",
-      "groupSlug": "all-minor-patch"
-    },
-    {
       "packagePatterns": ["^@loadable"],
       "updateTypes": ["minor", "patch"],
       "groupName": "loadable non-major dependencies",
