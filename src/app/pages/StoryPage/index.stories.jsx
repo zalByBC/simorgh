@@ -16,7 +16,7 @@ import persianPageData from './fixtureData/persian';
 import mundoPageData from './fixtureData/mundo';
 import StoryPage from './StoryPage';
 
-const PageWithOptimizely = withOptimizelyProvider(StoryPage, true);
+const PageWithOptimizely = withOptimizelyProvider(StoryPage);
 const Page = withPageWrapper(PageWithOptimizely);
 
 const withSecondaryColumnsKnob = pageData => storyFn => {
@@ -80,6 +80,7 @@ const Component = ({ pageData, service }) => (
 export default {
   Component,
   title: 'Pages/Story Page',
+  parameters: { chromatic: { disable: true } },
   decorators: [
     withKnobs,
     story => <WithTimeMachine>{story()}</WithTimeMachine>,
