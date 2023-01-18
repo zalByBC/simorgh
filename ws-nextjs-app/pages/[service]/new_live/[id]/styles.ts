@@ -25,4 +25,11 @@ export default {
         margin: '0.25rem 0',
       },
     }),
+  imageTestWrapper: () =>
+    css({
+      position: 'relative',
+      width: '100%',
+      maxWidth: '28rem',
+      aspectRatio: '16/9',
+    }),
 };

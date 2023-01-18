@@ -3,40 +3,37 @@
 
 import React, { useContext } from 'react';
 import { jsx } from '@emotion/react';
+import Image from 'next/image';
 import MetadataContainer from '#app/legacy/containers/Metadata';
 import LinkedDataContainer from '#app/legacy/containers/LinkedData';
 import Pagination from '#pages/TopicPage/Pagination';
 import Heading from '#app/components/Heading';
 import { ServiceContext } from '#contexts/ServiceContext';
-import nodeLogger from '#lib/logger.node';
 
 import styles from './styles';
-
-const logger = nodeLogger(__filename);
 
 type ComponentProps = {
   bbcOrigin?: string;
   pageData: {
     pageCount: number;
     activePage: number;
+    curations: {
+      summaries: {
+        imageUrl: string;
+        imageAlt: string;
+      }[];
+    }[];
   };
-  pathname: string;
   showAdsBasedOnLocation: boolean;
 };
 
 const LivePage = ({
   bbcOrigin,
   pageData,
-  pathname,
   showAdsBasedOnLocation,
 }: ComponentProps) => {
   const { lang } = useContext(ServiceContext);
   const { pageCount, activePage } = pageData;
-
-  // TODO: Remove after testing
-  logger.info('nextjs_client_render', {
-    url: pathname,
-  });
 
   return (
     <>
@@ -48,6 +45,7 @@ const LivePage = ({
         hasAmpPage={false}
       />
       <LinkedDataContainer type="CollectionPage" seoTitle="Test Live Page" />
+
       <main css={styles.wrapper}>
         <Heading level={1}>Test Next.JS Page</Heading>
         <pre css={styles.code}>
@@ -61,6 +59,20 @@ const LivePage = ({
             bbc-adverts:{' '}
             <span>{showAdsBasedOnLocation ? 'true' : 'false'}</span>
           </p>
+        </pre>
+        <pre css={styles.code}>
+          <Heading level={4}>next/image component</Heading>
+          <div css={styles.imageTestWrapper}>
+            <Image
+              alt={pageData?.curations?.[0].summaries?.[0].imageAlt}
+              src={pageData?.curations?.[0].summaries?.[0].imageUrl?.replace(
+                '{width}',
+                '640',
+              )}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         </pre>
         <pre css={styles.code}>{JSON.stringify(pageData, null, 2)}</pre>
         <Pagination

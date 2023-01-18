@@ -19,6 +19,18 @@ module.exports = {
   )
     ? undefined
     : assetPrefix,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ichef.test.bbci.co.uk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ichef.bbci.co.uk',
+      },
+    ],
+  },
   poweredByHeader: false,
   generateEtags: false,
   experimental: {
