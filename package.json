@@ -20,14 +20,13 @@
     "loader-utils": "2.0.4",
     "prismjs": "1.28.0",
     "trim": "1.0.1",
-    "trim-newlines": "3.0.1",
-    "winston@3.8.2": "patch:winston@npm:3.8.2#.yarn/patches/winston-npm-3.8.2-2035e9cac4.patch"
+    "trim-newlines": "3.0.1"
   },
   "scripts": {
     "type-check": "tsc",
     "amp:validate": "wait-on -t 20000 http://localhost:7080/status && node ./scripts/ampHtmlValidator/cli.js",
     "build:local": "rm -rf build && cp envConfig/local.env .env && NODE_ENV=production webpack",
-    "build": "yarn build:local && yarn type-check && node ./scripts/bundleSize",
+    "build": "pnpm build:local && pnpm type-check && node ./scripts/bundleSize",
     "build:profile": "rm -rf build && cp envConfig/local.env .env && IS_PROD_PROFILE=true NODE_ENV=production webpack",
     "build:live": "cp envConfig/live.env .env && NODE_ENV=production webpack",
     "build:live:debug": "rm -rf build && awk '{sub(/LOG_DIR=.+/,\"LOG_DIR='log'\")}1' envConfig/live.env > .env && NODE_ENV=production webpack",
@@ -39,11 +38,10 @@
     "cypress:3rdParty": "yarn cypress -- --project ./3rdPartyCypress/.",
     "cypress:adhoc": "yarn cypress:interactive -- --project ./AdHocCypress/.",
     "setupDevEnv": "cp envConfig/local.env .env && rm -rf envConfig/secret.env && ./scripts/checkSecretEnvVariables.sh",
-    "dev": "yarn setupDevEnv && rm -rf build && run-p webpack:dev:client webpack:dev:server",
+    "dev": "pnpm setupDevEnv && rm -rf build && run-p webpack:dev:client webpack:dev:server",
     "lighthouse": "./scripts/lighthouseRun.sh",
     "postshrinkwrap": "test -z $CI && ./scripts/packagelockHttps.sh; git update-index --assume-unchanged .env",
     "prepare": "husky install",
-    "preinstall": "node scripts/check-package-manager.js",
     "start": "NODE_ENV=production node  --max-old-space-size=3500 build/server.js & PORT=7081 node ws-nextjs-app/build/standalone/server.js",
     "stop": "./scripts/killApp.sh",
     "storybook": "node .storybook/buildFontPreloads && start-storybook -p 9001 -s .storybook/static -c .storybook",
@@ -122,7 +120,7 @@
     "react-router-dom": "5.3.4",
     "url-parse": "1.5.10",
     "uuid": "8.3.2",
-    "winston": "patch:winston@3.8.2#./patches/winston-file-descriptor.patch",
+    "winston": "3.8.2",
     "xmldoc": "1.1.2"
   },
   "devDependencies": {
@@ -253,5 +251,9 @@
       "cloud-init"
     ]
   },
-  "packageManager": "yarn@3.2.4"
+  "pnpm": {
+    "patchedDependencies": {
+      "winston@3.8.2": "patches/winston-file-descriptor.patch"
+    }
+  }
 }
