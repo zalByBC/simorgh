@@ -82,6 +82,11 @@ const getId = ({ pageType, service, variant, env, isCaf }: GetIdProps) => {
       getIdFunction = () => pageType;
       break;
     case LIVE_PAGE:
+      getIdFunction = (path: string) => {
+        // If the full path includes 'live' then it's an older CPS live page
+        return path.includes('live') ? getCpsId(path) : getTipoId(path);
+      };
+      break;
     case TOPIC_PAGE:
       getIdFunction = getTipoId;
       break;
@@ -105,6 +110,7 @@ const constructPageFetchUrl = ({
   const isLocal = !env || env === 'local';
 
   const id = getId({ pageType, service, env, variant, isCaf })(pathname);
+
   const capitalisedPageType =
     pageType.charAt(0).toUpperCase() + pageType.slice(1);
 

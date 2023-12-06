@@ -41,9 +41,16 @@ const getPageData = async ({
   page,
   service,
   variant,
-  rendererEnv,
+  rendererEnv = 'test',
 }: PageDataParams) => {
-  const pathname = `${id}${rendererEnv ? `?renderer_env=${rendererEnv}` : ''}`;
+  const isTipoId = /^c[a-z0-9]{10}t$/.test(id);
+
+  const assetId = isTipoId ? id : `${service}/live/${id}`;
+
+  const pathname = `${assetId}${
+    rendererEnv ? `?renderer_env=${rendererEnv}` : ''
+  }`;
+
   const livePageUrl = constructPageFetchUrl({
     page,
     pageType: 'live',
@@ -107,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     id,
     service,
     variant,
-    // renderer_env: rendererEnv,
+    renderer_env: rendererEnv,
     page = '1',
   } = context.query as PageDataParams;
 
@@ -142,7 +149,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     page,
     service,
     variant,
-    rendererEnv: 'test', // TODO: remove hardcoding
+    rendererEnv,
   });
 
   let routingInfoLogger = logger.debug;
