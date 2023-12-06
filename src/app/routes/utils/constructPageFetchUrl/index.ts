@@ -83,8 +83,9 @@ const getId = ({ pageType, service, variant, env, isCaf }: GetIdProps) => {
       break;
     case LIVE_PAGE:
       getIdFunction = (path: string) => {
-        // If the full path includes 'live' then it's an older CPS live page
-        return path.includes('live') ? getCpsId(path) : getTipoId(path);
+        const isTipoId = /^c[a-z0-9]{10}t$/.test(path);
+
+        return isTipoId ? getTipoId(path) : `${service}/live/${getCpsId(path)}`;
       };
       break;
     case TOPIC_PAGE:

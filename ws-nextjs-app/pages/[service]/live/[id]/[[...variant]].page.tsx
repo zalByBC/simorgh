@@ -43,13 +43,7 @@ const getPageData = async ({
   variant,
   rendererEnv = 'test',
 }: PageDataParams) => {
-  const isTipoId = /^c[a-z0-9]{10}t$/.test(id);
-
-  const assetId = isTipoId ? id : `${service}/live/${id}`;
-
-  const pathname = `${assetId}${
-    rendererEnv ? `?renderer_env=${rendererEnv}` : ''
-  }`;
+  const pathname = `${id}${rendererEnv ? `?renderer_env=${rendererEnv}` : ''}`;
 
   const livePageUrl = constructPageFetchUrl({
     page,
