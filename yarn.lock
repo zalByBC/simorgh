@@ -3687,15 +3687,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@loadable/server@npm:5.15.3":
-  version: 5.15.3
-  resolution: "@loadable/server@npm:5.15.3"
+"@loadable/server@npm:5.16.1":
+  version: 5.16.1
+  resolution: "@loadable/server@npm:5.16.1"
   dependencies:
     lodash: ^4.17.15
   peerDependencies:
     "@loadable/component": ^5.0.1
     react: ^16.3.0 || ^17.0.0 || ^18.0.0
-  checksum: 86b239296d6da5101867724418e182360069310b950a6bad5f269ebbbb96d96b60cf72b9c35f28298b2020d8c31b2fde907523de1baf367269dc980b7b6e1d8c
+  checksum: 47628785292f571c65dd8d5082be2c7169494e5a26498fbee87ab0bbe88df41227a8ff78926c186779067d93c4eb77aad82414aabfff17709330e102560150de
   languageName: node
   linkType: hard
 
@@ -20820,7 +20820,7 @@ __metadata:
     "@emotion/styled": 11.11.0
     "@loadable/babel-plugin": 5.16.1
     "@loadable/component": 5.15.3
-    "@loadable/server": 5.15.3
+    "@loadable/server": 5.16.1
     "@loadable/webpack-plugin": 5.15.2
     "@optimizely/react-sdk": 2.9.2
     "@storybook/addon-a11y": 6.5.16
